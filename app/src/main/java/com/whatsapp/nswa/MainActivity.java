@@ -30,7 +30,7 @@ import com.hbb20.CountryCodePicker;
 public class MainActivity extends AppCompatActivity {
 
     EditText numEditText, msgEditText;
-    Button submitBtn;
+    Button submitBtn, submitBtn2;
     CountryCodePicker codePicker;
     ImageButton pasteBtn;
     private AdView mAdView;
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         numEditText = findViewById(R.id.numEditText);
         msgEditText = findViewById(R.id.msgEditText);
         submitBtn = findViewById(R.id.submitBtn);
+        submitBtn2 = findViewById(R.id.submitBtn2);
         codePicker = findViewById(R.id.codePicker);
         pasteBtn = findViewById(R.id.pastebutton);
 
@@ -85,8 +86,28 @@ public class MainActivity extends AppCompatActivity {
             }
             String _uri = "http://api.whatsapp.com/send?phone=" + phoneNum + text;
             Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setPackage("com.whatsapp");
             intent.setData(Uri.parse(_uri));
             startActivity(intent);
+
+        });
+
+        submitBtn2.setOnClickListener(view -> {
+            String phoneNum = codePicker.getSelectedCountryCode() + numEditText.getText().toString();
+            String text = "";
+            String msg = msgEditText.getText().toString();
+            if (msg != null) {
+                if (msg.contains(" ")) {
+                    msg.replace(" ", "%20");
+                }
+                text = "&text=" + msg;
+            }
+            String _uri = "http://api.whatsapp.com/send?phone=" + phoneNum + text;
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setPackage("com.whatsapp.w4b");
+            intent.setData(Uri.parse(_uri));
+            startActivity(intent);
+
         });
     }
 
