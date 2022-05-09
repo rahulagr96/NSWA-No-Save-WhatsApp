@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         Toolbar tb = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(tb);
-        getSupportActionBar().setTitle("Instagram Likers");
+        getSupportActionBar().setTitle("NSWA");
+        getSupportActionBar().setSubtitle("No Save WhatsApp");
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
