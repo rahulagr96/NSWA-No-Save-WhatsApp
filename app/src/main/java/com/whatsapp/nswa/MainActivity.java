@@ -2,9 +2,12 @@ package com.whatsapp.nswa;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     CountryCodePicker codePicker;
     ImageButton pasteBtn;
     private AdView mAdView;
-    private Toolbar toolbar;
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +78,11 @@ public class MainActivity extends AppCompatActivity {
         }
         String _uri = "http://api.whatsapp.com/send?phone=" + phoneNum + text;
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        if (w4b) {
+        if (w4b)
             intent.setPackage("com.whatsapp.w4b");
-        } else {
+        else
             intent.setPackage("com.whatsapp");
-        }
+
         intent.setData(Uri.parse(_uri));
         startActivity(intent);
     }
@@ -95,13 +98,11 @@ public class MainActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-        mAdView = new AdView(this);
-        mAdView.setAdSize(AdSize.BANNER);
-        mAdView.setAdUnitId("ca-app-pub-8047506139990351/7435914923");
-        mAdView = findViewById(R.id.adView);
+
+        AdView adView = new AdView(this);
+        adView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        AdEvents();
+        adView.loadAd(adRequest);
 
         numEditText = findViewById(R.id.numEditText);
         msgEditText = findViewById(R.id.msgEditText);
@@ -109,37 +110,7 @@ public class MainActivity extends AppCompatActivity {
         submitBtn2 = findViewById(R.id.submitBtn2);
         codePicker = findViewById(R.id.codePicker);
         pasteBtn = findViewById(R.id.pastebutton);
-    }
 
-    private void AdEvents() {
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-            }
-
-            @Override
-            public void onAdFailedToLoad(LoadAdError adError) {
-                // Code to be executed when an ad request fails.
-            }
-
-            @Override
-            public void onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-            }
-
-            @Override
-            public void onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
-
-            @Override
-            public void onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
-        });
     }
 
     @Override

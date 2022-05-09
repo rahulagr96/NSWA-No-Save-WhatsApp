@@ -46,6 +46,8 @@
                     android:layout_marginTop="20dp">
 
                     <com.hbb20.CountryCodePicker
+                        app:ccp_rememberLastSelection="true"
+                        app:ccpDialog_backgroundColor="@color/white"
                         android:id="@+id/codePicker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -127,7 +129,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+            ads:adUnitId="ca-app-pub-8047506139990351/7435914923" />
     </RelativeLayout>
 
 
