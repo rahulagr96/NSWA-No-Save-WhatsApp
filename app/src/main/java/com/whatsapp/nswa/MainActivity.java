@@ -47,11 +47,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mAdView = new AdView(this);
-
         mAdView.setAdSize(AdSize.BANNER);
-
-        mAdView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
-        // TODO: Add adView to your view hierarchy.
+        mAdView.setAdUnitId("ca-app-pub-8047506139990351/7435914923");
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
